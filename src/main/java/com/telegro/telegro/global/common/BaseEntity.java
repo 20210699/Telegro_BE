@@ -1,4 +1,4 @@
-package com.telegro.telegro._base.common;
+package com.telegro.telegro.global.common;
 
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;

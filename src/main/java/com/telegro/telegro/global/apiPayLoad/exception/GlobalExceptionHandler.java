@@ -1,6 +1,6 @@
-package com.telegro.telegro._base.apiPayLoad.exception;
+package com.telegro.telegro.global.apiPayLoad.exception;
 
-import com.telegro.telegro._base.apiPayLoad.response.ErrorResponse;
+import com.telegro.telegro.global.apiPayLoad.response.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpRequestMethodNotSupportedException;

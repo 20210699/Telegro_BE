@@ -1,4 +1,4 @@
-package com.telegro.telegro._base.apiPayLoad.exception;
+package com.telegro.telegro.global.apiPayLoad.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package com.telegro.telegro._base.apiPayLoad.response;
+package com.telegro.telegro.global.apiPayLoad.response;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;

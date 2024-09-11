@@ -1,8 +1,8 @@
-package com.telegro.telegro._base.config;
+package com.telegro.telegro.global.config;
 
-import com.telegro.telegro._base.apiPayLoad.exception.CustomException;
-import com.telegro.telegro._base.apiPayLoad.response.ErrorResponse;
-import com.telegro.telegro._base.apiPayLoad.exception.Error;
+import com.telegro.telegro.global.apiPayLoad.exception.CustomException;
+import com.telegro.telegro.global.apiPayLoad.response.ErrorResponse;
+import com.telegro.telegro.global.apiPayLoad.exception.Error;
 import io.swagger.v3.core.converter.AnnotatedType;
 import io.swagger.v3.core.converter.ModelConverters;
 import io.swagger.v3.core.converter.ResolvedSchema;

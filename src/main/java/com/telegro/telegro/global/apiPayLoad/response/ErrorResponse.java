@@ -1,6 +1,6 @@
-package com.telegro.telegro._base.apiPayLoad.response;
+package com.telegro.telegro.global.apiPayLoad.response;
 
-import com.telegro.telegro._base.apiPayLoad.exception.CustomException;
+import com.telegro.telegro.global.apiPayLoad.exception.CustomException;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
