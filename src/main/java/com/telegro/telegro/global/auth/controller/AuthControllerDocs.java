@@ -12,7 +12,7 @@ public interface AuthControllerDocs {
     @Operation(
         summary = "자체 회원 가입"
     )
-    public SuccessResponse signup(@RequestBody SignUpRequestDto signUpRequestDto);
+    public SuccessResponse<?> signup(@RequestBody SignUpRequestDto signUpRequestDto);
 
     @Operation(
         summary = "자체 로그인"

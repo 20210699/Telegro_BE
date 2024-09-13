@@ -5,10 +5,12 @@ import com.telegro.telegro.global.apiPayLoad.response.SuccessResponse;
 import com.telegro.telegro.global.auth.dto.request.LoginRequestDto;
 import com.telegro.telegro.global.auth.dto.request.SignUpRequestDto;
 import com.telegro.telegro.global.auth.dto.response.LoginDto;
+import com.telegro.telegro.global.auth.dto.response.SignUpUserInfoDto;
 import com.telegro.telegro.global.auth.jwt.JWTUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,7 +31,17 @@ public class AuthController implements AuthControllerDocs {
   }
 
   @PostMapping("/signup")
-  public SuccessResponse signup(SignUpRequestDto signUpRequestDto) {
+  public SuccessResponse<?> signup(SignUpRequestDto signUpRequestDto) {
+      SignUpUserInfoDto userInfoDto = SignUpUserInfoDto.builder()
+              .userid(signUpRequestDto.userid())
+              .username(signUpRequestDto.username())
+              .password(signUpRequestDto.password())
+              .phone(signUpRequestDto.phone())
+              .email(signUpRequestDto.email())
+              .address(signUpRequestDto.address())
+              .build();
+
+      userService.signUp(userInfoDto);
 
       return SuccessResponse.of();
   }

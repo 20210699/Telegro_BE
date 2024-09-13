@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
+@Table(name = "orders")
 @Getter
 @Setter
 @Builder
