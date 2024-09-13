@@ -2,7 +2,7 @@
 name: Feature template
 about: Feature issue 템플릿입니다
 title: ''
-labels: "✨ Feature"
+labels: ''
 assignees: ''
 
 ---

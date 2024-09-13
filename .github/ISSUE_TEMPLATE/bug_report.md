@@ -2,7 +2,7 @@
 name: Bug template
 about: Bug issue 템플릿입니다
 title: ''
-labels: "\U0001F41E Bug"
+labels: ''
 assignees: ''
 
 ---
