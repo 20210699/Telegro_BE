@@ -39,6 +39,8 @@ public class AuthController implements AuthControllerDocs {
               .phone(signUpRequestDto.phone())
               .email(signUpRequestDto.email())
               .address(signUpRequestDto.address())
+              .addressDetail(signUpRequestDto.addressDetail())
+              .zipCode(signUpRequestDto.zipCode())
               .build();
 
       userService.signUp(userInfoDto);

@@ -40,7 +40,13 @@ public class User extends BaseEntity {
     private String address;
 
     @Column
-    private Long totalPrice;
+    private String addressDetail;
+
+    @Column
+    private String zipCode;
+
+    @Column
+    private double totalPrice;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DeliveryAddress> deliveryAddresses;
