@@ -1,0 +1,36 @@
+package com.telegro.telegro.global.auth.controller;
+
+import com.telegro.telegro.domain.user.service.UserService;
+import com.telegro.telegro.global.apiPayLoad.response.SuccessResponse;
+import com.telegro.telegro.global.auth.dto.request.LoginRequestDto;
+import com.telegro.telegro.global.auth.dto.request.SignUpRequestDto;
+import com.telegro.telegro.global.auth.dto.response.LoginDto;
+import com.telegro.telegro.global.auth.jwt.JWTUtil;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+
+@Slf4j
+@RestController
+@RequestMapping("/auth")
+@RequiredArgsConstructor
+public class AuthController implements AuthControllerDocs {
+
+  private final UserService userService;
+  private final JWTUtil jwtUtil;
+
+  @PostMapping("/login")
+  public SuccessResponse<LoginDto> login(LoginRequestDto loginRequestDto) {
+
+      return SuccessResponse.of();
+  }
+
+  @PostMapping("/signup")
+  public SuccessResponse signup(SignUpRequestDto signUpRequestDto) {
+
+      return SuccessResponse.of();
+  }
+}
