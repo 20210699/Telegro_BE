@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity @Getter @Setter @Builder
+@Table(name = "users")
 @NoArgsConstructor
 @AllArgsConstructor
 public class User extends BaseEntity {
@@ -39,7 +40,13 @@ public class User extends BaseEntity {
     private String address;
 
     @Column
-    private String totalPrice;
+    private String addressDetail;
+
+    @Column
+    private String zipCode;
+
+    @Column
+    private double totalPrice;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DeliveryAddress> deliveryAddresses;
