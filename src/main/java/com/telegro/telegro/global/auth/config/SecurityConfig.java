@@ -48,13 +48,13 @@ public class SecurityConfig {
   @Bean
   public WebMvcConfigurer corsConfigurer() {
     return new WebMvcConfigurer() {
+      @Override
       public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
+                .allowedOrigins("http://localhost:3000", "http://localhost:5173") // 허용할 프론트엔드 도메인 설정
                 .allowedMethods("*")
-                .allowedOrigins("http://localhost:3000",
-                        "http://localhost:5173"
-                )
-                .allowCredentials(true);
+                .allowedHeaders("*")
+                .allowCredentials(true); // 인증 정보 포함
       }
     };
   }
