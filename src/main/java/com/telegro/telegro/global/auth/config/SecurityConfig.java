@@ -49,7 +49,7 @@ public class SecurityConfig {
     return new WebMvcConfigurer() {
       public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedMethods("*")
+                .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
                 .allowedOrigins("http://localhost:3000",
                         "http://localhost:5173"
                 )
