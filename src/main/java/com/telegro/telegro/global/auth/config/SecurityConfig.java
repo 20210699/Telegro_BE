@@ -52,7 +52,8 @@ public class SecurityConfig {
         registry.addMapping("/**")
                 .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
                 .allowedOrigins("http://localhost:3000",
-                        "http://localhost:5173"
+                        "http://localhost:5173",
+                        "https://main.d1gzfbhzmwkdny.amplifyapp.com/"
                 )
                 .allowCredentials(true);
       }
