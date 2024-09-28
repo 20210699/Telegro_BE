@@ -1,12 +1,11 @@
 package com.telegro.telegro.domain.user.entity;
 
 import com.telegro.telegro.domain.order.entity.Order;
-import com.telegro.telegro.domain.user.entity.enums.Membership;
+import com.telegro.telegro.domain.user.entity.enums.Role;
 import com.telegro.telegro.global.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity @Getter @Setter @Builder
@@ -28,7 +27,7 @@ public class User extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Membership membership;
+    private Role role;
 
     @Column(length = 20)
     private String phone;

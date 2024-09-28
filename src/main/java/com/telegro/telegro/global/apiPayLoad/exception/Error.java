@@ -21,6 +21,7 @@ public enum Error {
     /* 403 */
     NOT_AGREED_TERM(HttpStatus.FORBIDDEN, 40300, "이용약관 동의가 필요합니다"),
     WIRHDRAWN_USER_ERROR(HttpStatus.FORBIDDEN, 40301, "탈퇴 후 7일이 지나지 않은 재가입 사용자입니다."),
+    FORBIDDEN_ACTION_ERROR(HttpStatus.FORBIDDEN, 40302, "관리자 권한이 필요합니다."),
 
     /* 404 */
     NOT_FOUND_ERROR(HttpStatus.NOT_FOUND, 40400, "리소스를 찾을 수 없습니다."),
@@ -30,6 +31,7 @@ public enum Error {
 
     /* 409 */
     NICKNAME_ALREADY_USED_ERROR(HttpStatus.CONFLICT, 40900, "이미 사용 중인 닉네임입니다."),
+    COMPANY_NAME_ALREADY_USED_ERROR(HttpStatus.CONFLICT, 40901, "이미 사용 중인 상호입니다."),
 
     /* 500 */
     INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, 50000, "서버 에러가 발생했습니다."),

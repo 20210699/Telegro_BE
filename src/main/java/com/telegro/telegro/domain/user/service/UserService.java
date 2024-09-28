@@ -1,7 +1,7 @@
 package com.telegro.telegro.domain.user.service;
 
 import com.telegro.telegro.domain.user.entity.User;
-import com.telegro.telegro.domain.user.entity.enums.Membership;
+import com.telegro.telegro.domain.user.entity.enums.Role;
 import com.telegro.telegro.domain.user.repository.UserRepository;
 import com.telegro.telegro.global.apiPayLoad.exception.CustomException;
 import com.telegro.telegro.global.auth.dto.request.LoginRequestDto;
@@ -36,7 +36,7 @@ public class UserService {
                 .zipCode(signUpUserInfoDto.getZipCode())
                 .totalPrice(0)
                 .email(signUpUserInfoDto.getEmail())
-                .membership(Membership.MEMBER)
+                .role(Role.MEMBER)
                 .password(passwordEncoder.encode(signUpUserInfoDto.getPassword()))
                 .build();
 
