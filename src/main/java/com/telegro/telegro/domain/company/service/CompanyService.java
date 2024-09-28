@@ -1,6 +1,7 @@
 package com.telegro.telegro.domain.company.service;
 
 import com.telegro.telegro.domain.company.dto.request.CompanyRequestDTO;
+import com.telegro.telegro.domain.company.dto.request.CompanySignUpDTO;
 import com.telegro.telegro.domain.company.entity.Company;
 import com.telegro.telegro.domain.company.entity.enums.Membership;
 import com.telegro.telegro.domain.company.repository.CompanyRepository;

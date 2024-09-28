@@ -2,9 +2,10 @@ package com.telegro.telegro.domain.company.dto.request;
 
 import com.telegro.telegro.domain.company.entity.enums.Membership;
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Builder;
 
 import java.util.List;
-
+@Builder
 public record CompanyRequestDTO(
         @Schema(description = "로그인 시 입력하는 아이디")
         String userId,
