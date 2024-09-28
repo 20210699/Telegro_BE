@@ -43,7 +43,7 @@ public class CompanyService {
                 .companyNumber(companyRequestDTO.companyNumber())
                 .companyType(companyRequestDTO.companyType())
                 .companyItem(companyRequestDTO.companyItem())
-                .membership(Membership.BEST)
+                .membership(companyRequestDTO.membership())
                 .user(user)
                 .build();
         try {
