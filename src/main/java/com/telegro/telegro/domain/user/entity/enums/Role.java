@@ -1,5 +1,5 @@
 package com.telegro.telegro.domain.user.entity.enums;
 
-public enum Membership {
+public enum Role {
     MEMBER, COMPANY, ADMIN
 }

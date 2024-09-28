@@ -3,8 +3,10 @@ package com.telegro.telegro.global.auth.config;
 import com.telegro.telegro.global.auth.exception.JWTAuthenticationEntryPoint;
 import com.telegro.telegro.global.auth.filter.JWTFilter;
 import com.telegro.telegro.global.auth.jwt.JWTUtil;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -28,6 +30,7 @@ public class SecurityConfig {
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     http
+        .cors(Customizer.withDefaults())
         .csrf(csrf -> csrf.disable())
         .formLogin(formLogin -> formLogin.disable())
         .httpBasic(httpBasic -> httpBasic.disable())
@@ -47,9 +50,10 @@ public class SecurityConfig {
     return new WebMvcConfigurer() {
       public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedMethods("*")
+                .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
                 .allowedOrigins("http://localhost:3000",
-                        "http://localhost:5173"
+                        "http://localhost:5173",
+                        "https://main.d1gzfbhzmwkdny.amplifyapp.com/"
                 )
                 .allowCredentials(true);
       }
