@@ -29,8 +29,8 @@ public class FileService {
 			.withMethod(HttpMethod.PUT)
 			.withExpiration(getPresignedUrlExpiration());
 
-		generatePresignedUrlRequest.addRequestParameter(
-			Headers.S3_CANNED_ACL, CannedAccessControlList.PublicRead.toString());
+//		generatePresignedUrlRequest.addRequestParameter(
+//			Headers.S3_CANNED_ACL, CannedAccessControlList.PublicRead.toString());
 
 		return PresignedUrlDto.builder()
 			.url(amazonS3.generatePresignedUrl(generatePresignedUrlRequest).toString()).build();
