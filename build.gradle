@@ -30,6 +30,10 @@ dependencies {
 	implementation 'io.jsonwebtoken:jjwt-api:0.12.6'
 	implementation group: 'com.nimbusds', name: 'nimbus-jose-jwt', version: '9.31'
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0'
+	implementation(platform("software.amazon.awssdk:bom:2.21.1"))
+	implementation 'io.awspring.cloud:spring-cloud-starter-aws:2.4.4'
+	implementation 'io.awspring.cloud:spring-cloud-starter-aws-secrets-manager-config:2.4.4'
+	implementation("software.amazon.awssdk:s3")
 
 	compileOnly 'org.projectlombok:lombok'
 

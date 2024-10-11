@@ -1,7 +1,9 @@
 package com.telegro.telegro.domain.product.entity;
 
+import com.telegro.telegro.domain.order.entity.Order;
 import com.telegro.telegro.domain.product.entity.enums.Category;
 import com.telegro.telegro.global.common.BaseEntity;
+import com.telegro.telegro.global.converter.StringListConverter;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,33 +21,38 @@ public class Product extends BaseEntity {
     private Long id;
 
     @Column
-    private String name;
+    private String productName;
 
     @Column
-    private String priceMember;
+    private String productModel;
 
-    @Column
-    private String priceA;
-
-    @Column
-    private String priceB;
-
-    @Column
-    private String priceC;
-
-    @Column
-    private String priceAdmin;
+    @Column(columnDefinition = "TEXT")
+    @Convert(converter = StringListConverter.class)
+    private List<String> options;
 
     @Enumerated(EnumType.STRING)
     @Column
     private Category category;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ProductFile> orders;
+    @Column
+    private String content;
+
+    @Column
+    private String priceBussiness;
+
+    @Column
+    private String priceBest;
+
+    @Column
+    private String priceDealer;
+
+    @Column
+    private String priceCustomer;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ProductFile> productFiles;
+    private List<Order> orders;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ProductImage> productImages;
+    @Column(columnDefinition = "TEXT")
+    @Convert(converter = StringListConverter.class)
+    private List<String> pictures;
 }
