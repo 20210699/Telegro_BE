@@ -32,7 +32,8 @@ public class LoginUserArgumentResolver implements HandlerMethodArgumentResolver 
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
     if (authentication == null || authentication.getPrincipal().equals("anonymousUser")) {
-      throw CustomException.of(Error.INVALID_TOKEN_ERROR);
+//      throw CustomException.of(Error.INVALID_TOKEN_ERROR);
+      return null;
     }
     return authentication.getPrincipal();
   }
