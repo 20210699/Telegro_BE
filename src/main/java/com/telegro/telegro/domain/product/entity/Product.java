@@ -55,4 +55,7 @@ public class Product extends BaseEntity {
     @Column(columnDefinition = "TEXT")
     @Convert(converter = StringListConverter.class)
     private List<String> pictures;
+
+    @Column
+    private String coverImage;
 }

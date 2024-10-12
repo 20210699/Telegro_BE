@@ -1,12 +1,9 @@
 package com.telegro.telegro.domain.company.service;
 
 import com.telegro.telegro.domain.company.dto.request.CompanyRequestDTO;
-import com.telegro.telegro.domain.company.dto.request.CompanySignUpDTO;
 import com.telegro.telegro.domain.company.entity.Company;
-import com.telegro.telegro.domain.company.entity.enums.Membership;
 import com.telegro.telegro.domain.company.repository.CompanyRepository;
 import com.telegro.telegro.domain.user.entity.User;
-import com.telegro.telegro.domain.user.entity.enums.Role;
 import com.telegro.telegro.domain.user.repository.UserRepository;
 import com.telegro.telegro.global.apiPayLoad.exception.CustomException;
 import com.telegro.telegro.global.apiPayLoad.exception.Error;
@@ -30,7 +27,6 @@ public class CompanyService {
         if (user == null) {
             throw CustomException.of(Error.NOT_FOUND_ERROR);
         }
-        user.setRole(Role.COMPANY);
 
         Company existCompany = companyRepository.findByCompanyName(companyRequestDTO.companyName());
         if(existCompany != null){
@@ -44,7 +40,6 @@ public class CompanyService {
                 .companyNumber(companyRequestDTO.companyNumber())
                 .companyType(companyRequestDTO.companyType())
                 .companyItem(companyRequestDTO.companyItem())
-                .membership(companyRequestDTO.membership())
                 .user(user)
                 .build();
         try {

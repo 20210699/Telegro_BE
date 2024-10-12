@@ -1,7 +1,6 @@
 package com.telegro.telegro.domain.company.entity;
 
 import com.telegro.telegro.domain.user.entity.User;
-import com.telegro.telegro.domain.company.entity.enums.Membership;
 import com.telegro.telegro.global.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
@@ -21,10 +20,6 @@ public class Company extends BaseEntity {
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
-
-    @Enumerated(EnumType.STRING)
-    @Column
-    private Membership membership;
 
     @Column(length = 20)
     private String managerName;

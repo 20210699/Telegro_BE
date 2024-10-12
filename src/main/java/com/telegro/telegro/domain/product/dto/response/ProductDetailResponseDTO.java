@@ -1,11 +1,13 @@
-package com.telegro.telegro.domain.product.dto.request;
+package com.telegro.telegro.domain.product.dto.response;
 
 import com.telegro.telegro.domain.product.entity.enums.Category;
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Builder;
 
 import java.util.List;
 
-public record ProductRequestDTO(
+@Builder
+public record ProductDetailResponseDTO(
         @Schema(description = "모델명")
         String productModel,
         @Schema(description = "상품명")
@@ -30,5 +32,5 @@ public record ProductRequestDTO(
         List<String> pictures,
         @Schema(description = "대표 이미지")
         String coverImage
-) {
+){
 }
