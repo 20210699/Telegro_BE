@@ -20,6 +20,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -63,6 +65,7 @@ public class ProductService {
                 .id(savedProduct.getId()).build();
     }
 
+    @Transactional
     public List<ProductResponseDTO> getProducts(Long id, Category category, int page, int size) {
 
         final User user;
@@ -90,6 +93,7 @@ public class ProductService {
         return productDTOs;
     }
 
+    @Transactional
     public ProductDetailResponseDTO getProductDetail(Long id, Long productId) {
         final User user;
         if (id != null) {
@@ -120,6 +124,7 @@ public class ProductService {
                 .build();
     }
 
+    @Transactional
     public void deleteProduct(Long id, Long productId) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> CustomException.of(Error.NOT_FOUND_ERROR));
@@ -129,6 +134,82 @@ public class ProductService {
         }
         productRepository.deleteById(productId);
     }
+
+    @Transactional
+    public ProductDetailResponseDTO updateProduct(Long id, Long productId, Map<String, Object> request) {
+        // 사용자 조회
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> CustomException.of(Error.NOT_FOUND_ERROR));
+
+        // 권한 확인 (ADMIN만 수정 가능)
+        if (!user.getRole().toString().equals("ADMIN")) {
+            throw CustomException.of(Error.FORBIDDEN_ACTION_ERROR);
+        }
+
+        // 상품 조회
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> CustomException.of(Error.NOT_FOUND_ERROR));
+
+        // 업데이트할 필드를 적용
+        request.forEach((key, value) -> {
+            switch (key) {
+                case "productModel":
+                    product.setProductModel((String) value);
+                    break;
+                case "productName":
+                    product.setProductName((String) value);
+                    break;
+                case "options":
+                    product.setOptions((List<String>) value);
+                    break;
+                case "category":
+                    product.setCategory(Category.valueOf((String) value));
+                    break;
+                case "content":
+                    product.setContent((String) value);
+                    break;
+                case "priceBussiness":
+                    product.setPriceBussiness((String) value);
+                    break;
+                case "priceBest":
+                    product.setPriceBest((String) value);
+                    break;
+                case "priceDealer":
+                    product.setPriceDealer((String) value);
+                    break;
+                case "priceCustomer":
+                    product.setPriceCustomer((String) value);
+                    break;
+                case "pictures":
+                    product.setPictures((List<String>) value);
+                    break;
+                case "coverImage":
+                    product.setCoverImage((String) value);
+                    break;
+                default:
+                    throw new IllegalArgumentException("알 수 없는 필드: " + key);
+            }
+        });
+
+        // 변경 사항 저장
+        Product updatedProduct = productRepository.save(product);
+
+        // 업데이트된 데이터를 DTO로 변환하여 반환
+        return ProductDetailResponseDTO.builder()
+                .productModel(updatedProduct.getProductModel())
+                .productName(updatedProduct.getProductName())
+                .options(updatedProduct.getOptions())
+                .category(updatedProduct.getCategory())
+                .content(updatedProduct.getContent())
+                .priceBussiness(updatedProduct.getPriceBussiness())
+                .priceBest(updatedProduct.getPriceBest())
+                .priceDealer(updatedProduct.getPriceDealer())
+                .priceCustomer(updatedProduct.getPriceCustomer())
+                .pictures(updatedProduct.getPictures())
+                .coverImage(updatedProduct.getCoverImage())
+                .build();
+    }
+
 
     private String selectPriceByUserRole(Product product, User user) {
         if (user == null) {
@@ -153,6 +234,5 @@ public class ProductService {
                 throw new IllegalArgumentException("알 수 없는 사용자 역할입니다: " + role);
         }
     }
-
 
 }

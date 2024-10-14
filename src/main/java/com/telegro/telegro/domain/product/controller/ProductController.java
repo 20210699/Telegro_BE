@@ -13,6 +13,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 @RestController
 @RequestMapping
@@ -40,4 +42,11 @@ public class ProductController implements ProductControllerDocs{
         productService.deleteProduct(id, productId);
         return SuccessResponse.of();
     }
+
+    @PatchMapping("/api/products/{productId}")
+    public SuccessResponse<ProductDetailResponseDTO> updateProduct(Long id, Long productId, Map<String, Object> request) {
+        return SuccessResponse.of(productService.updateProduct(id, productId, request));
+    }
+
+
 }

@@ -15,7 +15,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.Key;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 public interface ProductControllerDocs {
     @Operation(description = "상품을 등록합니다.")
@@ -39,4 +42,11 @@ public interface ProductControllerDocs {
     public SuccessResponse<Boolean> deleteProduct(
             @LoginInfo Long id,
             @PathVariable Long productId);
+
+    @Operation(summary = "상품을 수정합니다.")
+    @ApiResponse(responseCode = "200", description = "상품 수정 성공")
+    public SuccessResponse<ProductDetailResponseDTO> updateProduct(
+            @LoginInfo Long id,
+            @PathVariable Long productId,
+            @RequestBody Map<String, Object> request);
 }
