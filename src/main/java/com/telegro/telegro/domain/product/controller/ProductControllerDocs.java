@@ -18,8 +18,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 public interface ProductControllerDocs {
-    @Operation(description = "상품을 상세 조회합니다.")
-    @ApiResponse(responseCode = "200", description = "상품 조회 성공")
+    @Operation(description = "상품을 등록합니다.")
+    @ApiResponse(responseCode = "200", description = "상품 등록 성공")
+    public SuccessResponse<CreatedProductDTO> createProduct(@LoginInfo Long id, @RequestBody ProductRequestDTO request);
+
+    @Operation(description = "상품 목록을 조회합니다.")
+    @ApiResponse(responseCode = "200", description = "상품 목록 조회 성공")
     public SuccessResponse<List<ProductResponseDTO>> getProducts(
             @LoginInfo Long id,
             @RequestParam(value = "category") Category category,
@@ -30,7 +34,9 @@ public interface ProductControllerDocs {
     @ApiResponse(responseCode = "200", description = "상품 조회 성공")
     public SuccessResponse<ProductDetailResponseDTO> getProductDetail(@LoginInfo Long id,@PathVariable Long productId);
 
-    @Operation(description = "상품을 등록합니다.")
-    @ApiResponse(responseCode = "200", description = "상품 등록 성공")
-    public SuccessResponse<CreatedProductDTO> createProduct(@LoginInfo Long id, @RequestBody ProductRequestDTO request);
+    @Operation(summary = "상품을 삭제합니다.")
+    @ApiResponse(responseCode = "200", description = "상품 삭제 성공")
+    public SuccessResponse<Boolean> deleteProduct(
+            @LoginInfo Long id,
+            @PathVariable Long productId);
 }

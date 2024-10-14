@@ -34,4 +34,10 @@ public class ProductController implements ProductControllerDocs{
     public SuccessResponse<CreatedProductDTO> createProduct(Long id, ProductRequestDTO request) {
         return SuccessResponse.of(productService.createProduct(id, request));
     }
+
+    @DeleteMapping("/api/products/{productId}")
+    public SuccessResponse<Boolean> deleteProduct(Long id, Long productId) {
+        productService.deleteProduct(id, productId);
+        return SuccessResponse.of();
+    }
 }

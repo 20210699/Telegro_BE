@@ -63,6 +63,33 @@ public class ProductService {
                 .id(savedProduct.getId()).build();
     }
 
+    public List<ProductResponseDTO> getProducts(Long id, Category category, int page, int size) {
+
+        final User user;
+        if (id != null) {
+            user = userRepository.findById(id).orElse(null);
+        } else {
+            user = null;
+        }
+
+        PageRequest pageRequest = PageRequest.of(page, size);
+        Page<Product> products = productRepository.findByCategory(category, pageRequest);
+
+        if (products.isEmpty()) {
+            throw CustomException.of(Error.NOT_FOUND_ERROR);
+        }
+
+        // Product를 ProductResponseDTO로 변환
+        List<ProductResponseDTO> productDTOs = products.stream()
+                .map(product -> {
+                    String price = selectPriceByUserRole(product, user);
+                    return ProductResponseDTO.of(product, price);
+                })
+                .collect(Collectors.toList());
+
+        return productDTOs;
+    }
+
     public ProductDetailResponseDTO getProductDetail(Long id, Long productId) {
         final User user;
         if (id != null) {
@@ -93,31 +120,14 @@ public class ProductService {
                 .build();
     }
 
-    public List<ProductResponseDTO> getProducts(Long id, Category category, int page, int size) {
+    public void deleteProduct(Long id, Long productId) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> CustomException.of(Error.NOT_FOUND_ERROR));
 
-        final User user;
-        if (id != null) {
-            user = userRepository.findById(id).orElse(null);
-        } else {
-            user = null;
+        if(!user.getRole().toString().equals("ADMIN")) {
+            throw CustomException.of(Error.FORBIDDEN_ACTION_ERROR);
         }
-
-        PageRequest pageRequest = PageRequest.of(page, size);
-        Page<Product> products = productRepository.findByCategory(category, pageRequest);
-
-        if (products.isEmpty()) {
-            throw CustomException.of(Error.NOT_FOUND_ERROR);
-        }
-
-        // Product를 ProductResponseDTO로 변환
-        List<ProductResponseDTO> productDTOs = products.stream()
-                .map(product -> {
-                    String price = selectPriceByUserRole(product, user);
-                    return ProductResponseDTO.of(product, price);
-                })
-                .collect(Collectors.toList());
-
-        return productDTOs;
+        productRepository.deleteById(productId);
     }
 
     private String selectPriceByUserRole(Product product, User user) {
@@ -143,5 +153,6 @@ public class ProductService {
                 throw new IllegalArgumentException("알 수 없는 사용자 역할입니다: " + role);
         }
     }
+
 
 }
