@@ -53,7 +53,9 @@ public class SecurityConfig {
                 .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
                 .allowedOrigins("http://localhost:3000",
                         "http://localhost:5173",
-                        "https://main.d1gzfbhzmwkdny.amplifyapp.com/"
+                        "https://main.d1gzfbhzmwkdny.amplifyapp.com/",
+                        "https://www.telegro.kr",
+                        "https://telegro.kr"
                 )
                 .allowCredentials(true);
       }
