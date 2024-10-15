@@ -6,6 +6,8 @@ import lombok.Builder;
 
 @Builder
 public record ProductResponseDTO (
+        @Schema(description = "상품 id")
+        Long id,
         @Schema(description = "모델명")
         String productModel,
         @Schema(description = "상품명")
@@ -17,6 +19,7 @@ public record ProductResponseDTO (
 ){
         public static ProductResponseDTO of(Product product, String price) {
                 return ProductResponseDTO.builder()
+                        .id(product.getId())
                         .productModel(product.getProductModel())
                         .productName(product.getProductName())
                         .price(price)
