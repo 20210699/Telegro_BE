@@ -1,10 +1,12 @@
 package com.telegro.telegro.domain.company.controller;
 
 import com.telegro.telegro.domain.company.dto.request.CompanyRequestDTO;
+import com.telegro.telegro.domain.company.dto.request.CompanySignUpDTO;
 import com.telegro.telegro.domain.company.service.CompanyService;
 import com.telegro.telegro.domain.user.entity.User;
 import com.telegro.telegro.domain.user.entity.enums.Role;
 import com.telegro.telegro.domain.user.repository.UserRepository;
+import com.telegro.telegro.domain.user.service.UserService;
 import com.telegro.telegro.global.apiPayLoad.exception.CustomException;
 import com.telegro.telegro.global.apiPayLoad.exception.Error;
 import com.telegro.telegro.global.apiPayLoad.response.SuccessResponse;
@@ -20,11 +22,13 @@ public class CompanyController implements CompanyControllerDocs{
 
     // TODO : @PreAuthorize 사용하여 관리자 권한 구현 해보기
     private final CompanyService companyService;
+    private final UserService userService;
     private final UserRepository userRepository;
     @PostMapping()
-    public SuccessResponse<?> createCompany(Long id, CompanyRequestDTO companyRequestDTO) {
+    public SuccessResponse<?> createCompany(Long id, CompanySignUpDTO companySignUpDTO) {
         validateAdminAccess(id);
-        companyService.createCompany(companyRequestDTO);
+        userService.signUp(companySignUpDTO.getSignUpUserInfoDto());
+        companyService.createCompany(companySignUpDTO.getCompanyRequestDTO());
         return SuccessResponse.of();
     }
     @DeleteMapping()

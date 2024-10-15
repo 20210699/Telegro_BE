@@ -1,6 +1,5 @@
 package com.telegro.telegro.domain.notice.entity;
 
-import com.telegro.telegro.domain.product.entity.ProductFile;
 import com.telegro.telegro.domain.user.entity.User;
 import com.telegro.telegro.global.common.BaseEntity;
 import jakarta.persistence.*;
