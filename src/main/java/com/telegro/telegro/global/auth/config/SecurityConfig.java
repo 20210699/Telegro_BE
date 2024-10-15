@@ -30,7 +30,6 @@ public class SecurityConfig {
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     http
-        .cors(Customizer.withDefaults())
         .csrf(csrf -> csrf.disable())
         .formLogin(formLogin -> formLogin.disable())
         .httpBasic(httpBasic -> httpBasic.disable())
@@ -43,22 +42,5 @@ public class SecurityConfig {
         .exceptionHandling(handler -> handler.authenticationEntryPoint(jwtAuthenticationEntryPoint));
 
     return http.build();
-  }
-
-  @Bean
-  public WebMvcConfigurer corsConfigurer() {
-    return new WebMvcConfigurer() {
-      public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")
-                .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
-                .allowedOrigins("http://localhost:3000",
-                        "http://localhost:5173",
-                        "https://main.d1gzfbhzmwkdny.amplifyapp.com/",
-                        "https://www.telegro.kr",
-                        "https://telegro.kr"
-                )
-                .allowCredentials(true);
-      }
-    };
   }
 }
