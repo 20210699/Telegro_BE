@@ -55,7 +55,7 @@ public class ProductService {
         Product savedProduct = productRepository.save(product);
 
         // 대표 이미지가 없으면 등록한 사진 중 첫번째가 대표 이미지가 됨
-        if (request.pictures().isEmpty()) {
+        if (!request.pictures().isEmpty()) {
             if(request.coverImage() !=null){
                 savedProduct.setCoverImage(request.coverImage());
             } else {
